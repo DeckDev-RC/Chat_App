@@ -1,6 +1,8 @@
 import 'package:chat_app/components/button_lr.dart';
 import 'package:chat_app/components/text_field.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -18,7 +20,35 @@ class _RegisterPageState extends State<RegisterPage> {
   final confirmPasswordController = TextEditingController();
 
   // Cadastro do usuário
-  void signUp() {}
+  void signUp() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Senhas não coincidem!'),
+        ),
+      );
+      return;
+    }
+
+    // Pegando Autenticação do serviço
+    final authService = Provider.of<AuthService>(context, listen: false);
+
+    try {
+      await authService.signUpWithEmailandPassword(
+        emailController.text,
+        passwordController.text,
+        usernameController.text,
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 MyTextField(
                     controller: emailController,
                     hintText: 'Email',
-                    obscureText: true),
+                    obscureText: false),
 
                 const SizedBox(height: 10),
 
