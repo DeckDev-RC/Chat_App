@@ -55,91 +55,94 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 50),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 50),
 
-                // Logo
-                Icon(
-                  Icons.message,
-                  size: 100,
-                  color: Colors.grey[800],
-                ),
-
-                const SizedBox(height: 50),
-
-                // Vamos criar uma conta
-                const Text(
-                  'Vamos criar uma conta para você!',
-                  style: TextStyle(
-                    fontSize: 16,
+                  // Logo
+                  Icon(
+                    Icons.message,
+                    size: 100,
+                    color: Colors.grey[800],
                   ),
-                ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 50),
 
-                // Caixa de nome de usuário
-                MyTextField(
-                    controller: usernameController,
-                    hintText: 'Nome de usuário',
-                    obscureText: false),
+                  // Vamos criar uma conta
+                  const Text(
+                    'Vamos criar uma conta para você!',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 25),
 
-                // Caixa de email
-                MyTextField(
-                    controller: emailController,
-                    hintText: 'Email',
-                    obscureText: false),
+                  // Caixa de nome de usuário
+                  MyTextField(
+                      controller: usernameController,
+                      hintText: 'Nome de usuário',
+                      obscureText: false),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                // Caixa de senha
-                MyTextField(
-                    controller: passwordController,
-                    hintText: 'Senha',
-                    obscureText: true),
+                  // Caixa de email
+                  MyTextField(
+                      controller: emailController,
+                      hintText: 'Email',
+                      obscureText: false),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                // Caixa de confirmar senha
-                MyTextField(
-                    controller: confirmPasswordController,
-                    hintText: 'Confirmar senha',
-                    obscureText: true),
+                  // Caixa de senha
+                  MyTextField(
+                      controller: passwordController,
+                      hintText: 'Senha',
+                      obscureText: true),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 10),
 
-                // Botão de registrar
-                ButtonLR(
-                  onTap: signUp,
-                  text: 'Cadastrar',
-                ),
+                  // Caixa de confirmar senha
+                  MyTextField(
+                      controller: confirmPasswordController,
+                      hintText: 'Confirmar senha',
+                      obscureText: true),
 
-                const SizedBox(height: 50),
+                  const SizedBox(height: 25),
 
-                // Já é um membro? Entre agora
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Já é um membro?'),
-                    const SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                        'Entre agora',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                  // Botão de registrar
+                  ButtonLR(
+                    onTap: signUp,
+                    text: 'Cadastrar',
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  // Já é um membro? Entre agora
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Já é um membro?'),
+                      const SizedBox(width: 4),
+                      GestureDetector(
+                        onTap: widget.onTap,
+                        child: const Text(
+                          'Entre agora',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.lightBlue,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                )
-              ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
