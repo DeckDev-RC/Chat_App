@@ -5,14 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class InitialPage extends StatefulWidget {
+  const InitialPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<InitialPage> createState() => _InitialPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _InitialPageState extends State<InitialPage> {
   // Instancia de autenticação
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -27,20 +27,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF626868),
       appBar: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(60),
+          ),
+        ),
+        backgroundColor: const Color(0xFF273C2C),
         centerTitle: true,
         title: const Text(
           'Página Incial',
+          style: TextStyle(color: Colors.white),
         ),
         actions: [
           // Botão de sair
-          IconButton(
-            onPressed: signOut,
-            icon: const Icon(Icons.logout),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+              onPressed: signOut,
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+            ),
           )
         ],
       ),
       body: _buildUserList(),
+
+      // Barra de navegação inferior
     );
   }
 
@@ -73,7 +89,24 @@ class _HomePageState extends State<HomePage> {
     // Exibir todos os usuários, exceto o usuário atual
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
-        title: Text(data['username']),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        leading: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.person,
+            ),
+          ),
+        ),
+        title: Text(
+          data['username'],
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
         onTap: () {
           // Enviar o UID do usuário clicado para a página de bate-papo
           Navigator.push(

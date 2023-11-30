@@ -39,6 +39,11 @@ dependencies:
   firebase_auth: ^4.14.1
   cloud_firestore: ^4.13.3
   provider: ^6.1.1
+  curved_navigation_bar: ^1.0.3
+  google_nav_bar: ^5.0.6
+  flutterando_metrics: ^5.7.7
+
+  flutter_highlight: ^0.7.0
 
 dev_dependencies:
   flutter_test:
